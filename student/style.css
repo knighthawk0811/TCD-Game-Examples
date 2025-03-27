@@ -150,13 +150,13 @@ main {
     grid-row-start: 3;
     grid-row-end: 4;
 
-    padding: 0 1em;
+    padding: 0.5rem 0;
     width: calc(100% - 2em);
     min-height: 50vh;
 }
 
 aside {
-    padding: 5px;
+    padding: 0.5rem 1rem;
 }
 aside.aside-left {
     grid-area: left;
@@ -186,6 +186,7 @@ main ul.list {
     flex-direction: column;
     list-style: none;
     text-align: center;
+    padding: 0;
 }
 /*--------------------------------------------------------------
 # Footer Area

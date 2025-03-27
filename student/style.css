@@ -181,7 +181,7 @@ aside img {
     object-fit: cover;
 }
 
-main ul {
+main ul.list {
     display: flex;
     flex-direction: column;
     list-style: none;

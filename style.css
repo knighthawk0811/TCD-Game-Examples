@@ -1,0 +1,343 @@
+/*
+Description:  Default theme for Classes
+Author:       Joseph Neathawk
+Author URI:   https://knighthawk0811.github.io
+License: GPLv3
+License URI: http://www.gnu.org/licenses/gpl.html
+*/
+
+/*--------------------------------------------------------------
+selector {
+	layout(position)
+	
+	content(text)
+	
+	design(background)
+	
+	other(z-index)
+}
+----------------------------------------------------------------
+>>> COLORS:	  
+----------------------------------------------------------------
+	blue-dark:#003366;
+	green:#00cc66;	
+	red: #aa0000;
+	yellow: #DFE69E rgba(255,255,100,0.5);
+
+----------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# Main Structure
+# General Elements
+# Modal Navigation
+# Navigation
+# Header Area
+# Content Area
+# Footer Area
+# Reusable Classes
+# Other
+# Templates
+# Media Queries
+
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+# Main Structure
+--------------------------------------------------------------*/
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+    box-sizing: border-box;
+}
+html.not-top {
+    display: none;
+}
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+/*the entire body of the html page*/
+body {
+    margin: 0;
+    background: #669966;
+}
+/* a wrapper around all the actual page content
+    this will be centered on the page*/
+#page {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: auto auto 1fr auto;
+    /*grid-template-areas:
+        "header header header"
+        "nav nav nav"
+        "left main right"
+        "footer footer footer";*/
+    grid-gap: 0px;
+
+    margin: 3px auto;
+    width: calc(100% - 10px);
+    max-width: 1000px;
+    min-height: 90vh;
+
+    background: rgba(255, 255, 255, 1);
+    border-radius: 5px;
+    box-shadow: 0px 0px 1px 2px rgba(0, 0, 0, 0.125);
+}
+
+/*--------------------------------------------------------------
+# General Elements
+--------------------------------------------------------------*/
+h2, h3, h4 {
+    text-align:center;
+}
+h3, h4 {
+    margin: 0;
+    color:#666666;
+}
+/*--------------------------------------------------------------
+# Modal Navigation
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+# Navigation
+--------------------------------------------------------------*/
+
+nav {
+    grid-area: nav;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+
+    padding: 5px 1em;
+    margin: 0;
+    color: #ffffff;
+    background-color: #003366;
+}
+nav ul li {
+    list-style: none inside none;
+}
+nav ul {
+    list-style: none inside none;
+    padding: 0;
+    margin: 0;
+}
+nav a {
+    color: #ffffff;
+}
+
+/* hamburger */
+#hamburger-button {
+    margin: 10px;
+    position: relative;
+    border-radius: 7px;
+
+    width: 32px;
+    height: 32px;
+    background-image: url(https://imgur.com/3ZvbJfL.png);
+    background-size: 500px 200px;
+    background-position: -250px -150px;
+
+    cursor: pointer;
+}
+.hamburger-area {
+    grid-area: nav;
+    padding: 0;
+    margin: 0;
+    width: 0;
+    font-size: 0.1em;
+    line-height: 3;
+    overflow: hidden;
+
+    transition: all 500ms ease;
+}
+body.hamburger-active .hamburger-area {
+    width: 100%;
+    padding: 1em;
+    font-size: 1em;
+    line-height: 1.3;
+
+    transition: all 1500ms ease, width 1ms ease;
+}
+
+.hamburger-area ul {
+    padding: 0;
+}
+/*--------------------------------------------------------------
+# Header Area
+--------------------------------------------------------------*/
+/*main header div*/
+header {
+    grid-area: header;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+
+    margin: 0;
+    min-height: 5em;
+    padding: 1em;
+    color: #eeeeff;
+    text-align: center;
+    background-color: #343a40;
+}
+
+/*--------------------------------------------------------------
+# Content Area
+--------------------------------------------------------------*/
+main {
+    grid-area: main;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
+
+    padding: 0.5rem 0;
+    width: calc(100% - 2em);
+    min-height: 50vh;
+}
+
+aside {
+    padding: 0.5rem 1rem;
+}
+aside.aside-left {
+    grid-area: left;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+aside.aside-right {
+    grid-area: right;
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 4;
+
+    /*background-color: rgba(255, 100, 50, 0.5);*/
+}
+aside img {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    object-fit: cover;
+}
+
+main ul.list {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    text-align: center;
+    padding: 0;
+}
+/*--------------------------------------------------------------
+# Footer Area
+--------------------------------------------------------------*/
+/*the footer of the page*/
+footer {
+    grid-area: footer;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 4;
+    grid-row-end: 5;
+
+    margin: 0;
+    padding: 1rem 0;
+    color: #eeeeff;
+    text-align: center;
+    background: #343a40;
+}
+/*--------------------------------------------------------------
+# Reusable Classes
+--------------------------------------------------------------*/
+
+/* iframe responsiveness */
+[style*="--aspect-ratio"] > :first-child {
+    width: 100%;
+}
+[style*="--aspect-ratio"] > img {
+    height: auto;
+}
+@supports (--custom: property) {
+    [style*="--aspect-ratio"] {
+        position: relative;
+    }
+    [style*="--aspect-ratio"]::before {
+        content: "";
+        display: block;
+        padding-bottom: calc(100% / (var(--aspect-ratio)));
+    }
+    [style*="--aspect-ratio"] > :first-child {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+    }
+}
+
+  /* for mobile sizes */
+@media only screen and (max-width: 599px) {
+    [style*="--aspect-ratio-m"] > :first-child {
+        width: 100%;
+    }
+    [style*="--aspect-ratio-m"] > img {
+        height: auto;
+    }
+    @supports (--custom: property) {
+        [style*="--aspect-ratio-m"] {
+        position: relative;
+        }
+        [style*="--aspect-ratio-m"]::before {
+            content: "";
+            display: block;
+            padding-bottom: calc(100% / (var(--aspect-ratio-m)));
+        }
+        [style*="--aspect-ratio-m"] > :first-child {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+        }
+    }
+}
+/*--------------------------------------------------------------
+# Other
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# Templates
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# Media Queries
+--------------------------------------------------------------*/
+
+/* for-phone-only */
+@media only screen and (max-width: 599px) {
+}
+
+/* for-tablet-portrait-up */
+@media only screen and (min-width: 600px) {
+}
+
+/* for-tablet-portrait-only */
+@media only screen and (min-width: 600px) and (max-width: 899px) {
+}
+
+/* for-tablet-landscape-up */
+@media only screen and (min-width: 900px) {
+}
+
+/* for-tablet-landscape-only */
+@media only screen and (min-width: 900px) and (max-width: 1199px) {
+}
+
+/* for-desktop-up */
+@media only screen and (min-width: 1200px) {
+}
+
+/* for-desktop-only */
+@media only screen and (min-width: 1200px) and (max-width: 1799px) {
+}
+
+/* for-big-desktop-up */
+@media only screen and (min-width: 1800px) {
+}

@@ -6,6 +6,17 @@
     <title>TCD CIS class games by year</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="favicon.png" />
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+        jQuery(document).ready(function() {
+            $("#hamburger-button").click(function() {
+                $("body").toggleClass("hamburger-active");
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -21,11 +32,30 @@
         </nav>
 
         <aside class="aside-left">
-            <img src="images/make-games.png" alt="Make Games">
+            <div id="hamburger-button">&nbsp;</div>     
+            <div class="hamburger-area">
+                <p>Teacher Examples</p>
+                <ul>
+                    <li><a href="https://tcdcis.netlify.app/first-game/" target="_blank">First Game of the Year</a></li>
+                    <li><a href="https://tcdcis.netlify.app/dragable-objects/" target="_blank">Draggable Objects</a></li>
+                    <li><a href="https://tcdcis.netlify.app/dice-roller/" target="_blank">Dice Roller</a></li>
+                    <li><a href="https://tcdcis.netlify.app/cyoa/" target="_blank">Choose Your Own Adventure</a></li>
+                    <li><a href="https://tcdcis.netlify.app/map-nav/" target="_blank">Adventure Map Movement</a></li>
+                    <li><a href="https://tcdcis.netlify.app/scroll-patrol/" target="_blank">Scroll & Patrol</a></li>
+                    <li><a href="https://tcdcis.netlify.app/snake-gm/" target="_blank">Snake</a></li>
+                    <li><a href="https://tcdcis.netlify.app/inventory_simple/" target="_blank">Inventory Simple</a></li>
+                    <li><a href="https://tcdcis.netlify.app/inventory/" target="_blank">Inventory</a></li>
+                    <li><a href="https://tcdcis.netlify.app/dungeon-crawler-pause/" target="_blank">Enemy Pathfinding</a></li>
+                </ul>
+            </div>
         </aside>
 
         <aside class="aside-right">
             <img src="images/make-games.png" alt="Make Games">
+            <p>2024 Fall Semester Games</p>
+            <div style="--aspect-ratio: 16/9; --aspect-ratio-m: 4/3;">
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/dA7Wuee4MNs?si=ACJ-OctYB_k2L38A" title="Student Games 2024 Fall" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
         </aside>
 
         <main>

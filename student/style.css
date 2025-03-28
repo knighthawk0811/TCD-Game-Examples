@@ -125,6 +125,44 @@ nav ul {
 nav a {
     color: #ffffff;
 }
+
+/* hamburger */
+#hamburger-button {
+    margin: 10px;
+    position: relative;
+    border-radius: 7px;
+
+    width: 32px;
+    height: 32px;
+    background-image: url(https://imgur.com/3ZvbJfL.png);
+    background-size: 500px 200px;
+    background-position: -250px -150px;
+
+    cursor: pointer;
+}
+.hamburger-area {
+    grid-area: nav;
+    padding: 0;
+    margin: 0;
+    width: 0;
+    font-size: 0.1em;
+    line-height: 3;
+    overflow: hidden;
+
+    transition: all 500ms ease;
+}
+body.hamburger-active .hamburger-area {
+    width: 100%;
+    padding: 1em;
+    font-size: 1em;
+    line-height: 1.3;
+
+    transition: all 1500ms ease, width 1ms ease;
+}
+
+.hamburger-area ul {
+    padding: 0;
+}
 /*--------------------------------------------------------------
 # Header Area
 --------------------------------------------------------------*/
@@ -212,6 +250,56 @@ footer {
 /*--------------------------------------------------------------
 # Reusable Classes
 --------------------------------------------------------------*/
+
+/* iframe responsiveness */
+[style*="--aspect-ratio"] > :first-child {
+    width: 100%;
+}
+[style*="--aspect-ratio"] > img {
+    height: auto;
+}
+@supports (--custom: property) {
+    [style*="--aspect-ratio"] {
+        position: relative;
+    }
+    [style*="--aspect-ratio"]::before {
+        content: "";
+        display: block;
+        padding-bottom: calc(100% / (var(--aspect-ratio)));
+    }
+    [style*="--aspect-ratio"] > :first-child {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+    }
+}
+
+  /* for mobile sizes */
+@media only screen and (max-width: 599px) {
+    [style*="--aspect-ratio-m"] > :first-child {
+        width: 100%;
+    }
+    [style*="--aspect-ratio-m"] > img {
+        height: auto;
+    }
+    @supports (--custom: property) {
+        [style*="--aspect-ratio-m"] {
+        position: relative;
+        }
+        [style*="--aspect-ratio-m"]::before {
+            content: "";
+            display: block;
+            padding-bottom: calc(100% / (var(--aspect-ratio-m)));
+        }
+        [style*="--aspect-ratio-m"] > :first-child {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+        }
+    }
+}
 /*--------------------------------------------------------------
 # Other
 --------------------------------------------------------------*/

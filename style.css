@@ -153,7 +153,6 @@ nav a {
 }
 body.hamburger-active .hamburger-area {
     width: 100%;
-    padding: 1em;
     font-size: 1em;
     line-height: 1.3;
 

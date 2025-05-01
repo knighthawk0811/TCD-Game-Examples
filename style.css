@@ -65,13 +65,13 @@ body {
     this will be centered on the page*/
 #page {
     display: grid;
-    grid-template-columns: 1fr 4fr 2fr;
+    grid-template-columns: 1rem 3fr 1fr;
     grid-template-rows: auto auto 1fr auto;
-    /*grid-template-areas:
+    grid-template-areas:
         "header header header"
         "nav nav nav"
         "left main right"
-        "footer footer footer";*/
+        "footer footer footer";
     grid-gap: 0px;
 
     margin: 3px auto;
@@ -104,10 +104,11 @@ h3, h4 {
 
 nav {
     grid-area: nav;
-    grid-column-start: 1;
-    grid-column-end: 4;
-    grid-row-start: 2;
-    grid-row-end: 3;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    grid-template-rows: auto;
+    justify-items: start;
+    align-items: center;
 
     padding: 5px 1em;
     margin: 0;
@@ -164,7 +165,7 @@ body.hamburger-active .hamburger-area {
     border-radius: 0.5rem;
     background-color: #dddddd;
 
-    transition: all 1500ms ease, width 1ms ease;
+    transition: all 1000ms ease, width 1ms ease;
 }
 
 .hamburger-area ul {
@@ -176,10 +177,6 @@ body.hamburger-active .hamburger-area {
 /*main header div*/
 header {
     grid-area: header;
-    grid-column-start: 1;
-    grid-column-end: 4;
-    grid-row-start: 1;
-    grid-row-end: 2;
 
     margin: 0;
     min-height: 5em;
@@ -194,10 +191,6 @@ header {
 --------------------------------------------------------------*/
 main {
     grid-area: main;
-    grid-column-start: 2;
-    grid-column-end: 3;
-    grid-row-start: 3;
-    grid-row-end: 4;
 
     padding: 0.5rem 0;
     width: calc(100% - 2em);
@@ -209,17 +202,9 @@ aside {
 }
 aside.aside-left {
     grid-area: left;
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 3;
-    grid-row-end: 4;
 }
 aside.aside-right {
     grid-area: right;
-    grid-column-start: 3;
-    grid-column-end: 4;
-    grid-row-start: 3;
-    grid-row-end: 4;
 
     /*background-color: rgba(255, 100, 50, 0.5);*/
 }
@@ -243,10 +228,6 @@ main ul.list {
 /*the footer of the page*/
 footer {
     grid-area: footer;
-    grid-column-start: 1;
-    grid-column-end: 4;
-    grid-row-start: 4;
-    grid-row-end: 5;
 
     margin: 0;
     padding: 1rem 0;

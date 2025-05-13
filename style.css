@@ -19,11 +19,15 @@ selector {
 ----------------------------------------------------------------
 >>> COLORS:	  
 ----------------------------------------------------------------
-	blue-dark:#003366;
-	green:#00cc66;	
-	red: #aa0000;
-	yellow: #DFE69E rgba(255,255,100,0.5);
+*/
+:root {
 
+    --main-color: #003366;
+    --main-color-light: #006edd;
+    --nav-color: #343a40;
+    --bg-color: #669966;
+}
+/*
 ----------------------------------------------------------------
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
@@ -59,7 +63,7 @@ html.not-top {
 /*the entire body of the html page*/
 body {
     margin: 0;
-    background: #669966;
+    background: var(--bg-color);
 }
 /* a wrapper around all the actual page content
     this will be centered on the page*/
@@ -80,6 +84,8 @@ body {
     min-height: 90vh;
 
     background: rgba(255, 255, 255, 1);
+    
+    background: #dddddd;
     border-radius: 5px;
     box-shadow: 0px 0px 1px 2px rgba(0, 0, 0, 0.125);
 }
@@ -87,12 +93,30 @@ body {
 /*--------------------------------------------------------------
 # General Elements
 --------------------------------------------------------------*/
+h1.logo {
+    font-family: sans-serif;
+    text-transform: uppercase;
+}
+h1.logo img{
+    max-height: 1em;
+    margin-right: 1rem;
+}
 h2, h3, h4 {
     text-align:center;
 }
 h3, h4 {
     margin: 0;
     color:#666666;
+}
+
+a {
+    color: var(--main-color-light);
+}
+a:hover{
+    color: #000000;
+}
+a:visited {
+    color: var(--bg-color);
 }
 /*--------------------------------------------------------------
 # Modal Navigation
@@ -113,18 +137,25 @@ nav {
     padding: 5px 1em;
     margin: 0;
     color: #ffffff;
-    background-color: #003366;
-}
-nav ul li {
-    list-style: none inside none;
+    background-color: var(--nav-color);
 }
 nav ul {
     list-style: none inside none;
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
 }
-nav a {
+nav ul li {
+    list-style: none inside none;
+}
+nav a,
+nav a:visited {
     color: #ffffff;
+}
+nav a:hover {
+    color: var(--main-color-light);
 }
 
 /* hamburger */
@@ -183,7 +214,7 @@ header {
     padding: 1em;
     color: #eeeeff;
     text-align: center;
-    background-color: #343a40;
+    background-color: var(--main-color);
 }
 
 /*--------------------------------------------------------------
@@ -195,6 +226,7 @@ main {
     padding: 0.5rem 0;
     width: calc(100% - 2em);
     min-height: 50vh;
+    
 }
 
 aside {
@@ -221,6 +253,12 @@ main ul.list {
     list-style: none;
     text-align: center;
     padding: 0;
+}
+
+main section {
+    border:1px solid #999999;
+    border-radius: 1rem;
+    background: #ffffff;
 }
 /*--------------------------------------------------------------
 # Footer Area

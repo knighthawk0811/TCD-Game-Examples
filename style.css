@@ -256,6 +256,7 @@ main ul.list {
 }
 
 main section {
+    margin-bottom: 1em;
     border:1px solid #999999;
     border-radius: 1rem;
     background: #ffffff;

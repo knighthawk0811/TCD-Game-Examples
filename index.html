@@ -12,11 +12,11 @@
 
     <script>
         jQuery(document).ready(function() {
-            $("#page").click(function() {
-                $("body").removeClass("hamburger-active");
-            });
             $("#hamburger-button").click(function() {
-                $("body").addClass("hamburger-active");
+                $("body").toggleClass("hamburger-active");
+            });
+            $("header, aside, main").click(function() {
+                $("body").removeClass("hamburger-active");
             });
         });
     </script>

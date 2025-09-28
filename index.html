@@ -13,7 +13,10 @@
     <script>
         jQuery(document).ready(function() {
             $("#hamburger-button").click(function() {
-                $("body").toggleClass("hamburger-active");
+                $("body").addClass("hamburger-active");
+            });
+            $("#page").click(function() {
+                $("body").removeClass("hamburger-active");
             });
         });
     </script>

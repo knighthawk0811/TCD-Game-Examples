@@ -1,3 +1,6 @@
 # Redirects from what the browser requests to what we serve
 /student                /   301!
 
+
+# Schoology PD class from 2025 11 05
+/schoology-pd           https://docs.google.com/document/d/1mobOG7SuVw10Tp2oclZ7lyCiXXheVamhDWgskA-N-x0/edit?usp=sharing 301!

@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <html lang="en-us">
+
+  <!-- Custom PreHead code is injected here -->
+  
+
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
-    <title>GXC Game</title>
+
+    <!-- Builtin injector for disabling cache -->
+    
+
+    <title></title>
+
+    <!-- Custom PreStyle code is injected here -->
+    
+
     <style>
       @-webkit-keyframes rotation {
         from {
@@ -59,11 +71,7 @@
         min-height: fill-available;
         min-height: 100svh; /* Otherwise contents can be covered by an address bar in Safari on iOS 15 */
         min-width: 100vw;
-        background: radial-gradient(
-          56.63% 56.63% at 50% 43.37%,
-          #1c1726 0%,
-          #060612 100%
-        );
+        background:radial-gradient( 56.63% 56.63% at 50% 43.37%, #1c1726 0%, #060612 100%);
         display: flex;
         flex-direction: column;
         overflow-x: hidden;
@@ -90,17 +98,14 @@
         background-color: black;
         position: relative;
         transition: opacity 5s ease-in;
-        -webkit-transition: opacity 5s ease-in;
+		-webkit-transition: opacity 5s ease-in;
         opacity: 0;
         filter: blur(0) grayscale(0);
         margin-top: auto;
         margin-bottom: auto;
-        image-rendering: optimizeSpeed;             /* Older versions of FF          */
-        image-rendering: -moz-crisp-edges;          /* FF 6.0+                       */
-        image-rendering: -webkit-optimize-contrast; /* Safari                        */
-        image-rendering: -o-crisp-edges;            /* OS X & Windows Opera (12.02+) */
-        image-rendering: pixelated;                 /* Awesome future-browsers       */
-        -ms-interpolation-mode: nearest-neighbor;   /* IE                            */
+        image-rendering: optimizeQuality;           /* Older versions of FF          */
+        image-rendering: auto;                      /* Awesome future-browsers       */
+        -ms-interpolation-mode: bicubic;            /* IE                            */        
       }
 
       canvas.active {
@@ -427,16 +432,39 @@
         stroke-width: 2;
       }
     </style>
+
+    <!-- Custom PostStyle code is injected here -->
+    
+
+    <!-- Builtin injector for injecting flurry analytics code -->
+    
   </head>
 
+  <!-- Custom PostHead code is injected here -->
+  
+
+  <!-- Custom PreBody code is injected here -->
+  
+
   <body>
+
+    <!-- Custom BodyStart code is injected here -->
+    
+
+    <!-- Custom PreCanvas code is injected here -->
+    
+
     <canvas
       class="emscripten"
       id="canvas"
       oncontextmenu="event.preventDefault()"
       tabindex="-1"
-    >
+    >    
     </canvas>
+
+    <!-- Custom PostCanvas code is injected here -->
+    
+
     <div id="pauseMenuContainer" hidden>
       <div id="pauseMenuBorder">
         <div id="pauseMenu">
@@ -527,20 +555,9 @@
       </div>
     </div>
     <div class="output-container" id="output-container" >
-      <button class="output-button" onclick="toggleConsole()">
-        Toggle Console
-      </button>
-      <button id="QRButton" class="output-button" onclick="toggleQRCode()">
-        Show QRCode
-      </button>
-      <button id="QR2Button" class="output-button" onclick="toggleQRCode2()">
-        Show Opera GX QRCode
-      </button>
-      <!--
-      <button id="webglbutton" class="output-button" onclick="toggleWebGLContext()">
-        Lose WebGL Context
-      </button>
-      -->
+      <!-- Custom Button code is injected here -->
+      
+
       <button class="output-button" id="stats-button" style="visibility: hidden" onclick="toggleElement('multiplayer-stats-container')">
         Toggle Stats
       </button>
@@ -655,10 +672,6 @@
       var canvasElement = document.getElementById("canvas");
       var outputElement = document.getElementById("output");
       var outputContainerElement = document.getElementById("output-container");
-      var qrElement = document.getElementById("QRCode");
-      var qr2Element = document.getElementById("QR2Code");
-      var qrButton = document.getElementById("QRButton");
-      var qr2Button = document.getElementById("QR2Button");
       var pauseMenu = document.getElementById("pauseMenuContainer");
       var resumeButton = document.getElementById("resumeButton");
       var quitButton = document.getElementById("quitButton");
@@ -788,61 +801,9 @@
         }
       }
 
-      function toggleConsole() {
-        var isShown = outputElement.style.display === "flex";
-        if (isShown) {
-          outputElement.style.display = "none";
-          outputElement.scrollIntoView(false);
-        } else {
-          outputElement.style.display = "flex";
-          outputElement.scrollIntoView(true);
-        }
-      }
+      // add in the script code
+      
 
-      function toggleQRCode() {
-        var isShown = !qrElement.hidden;
-        if (isShown) {
-          qrElement.hidden = true;
-          qrButton.innerHTML = "Show QRCode";
-        } else {
-          qrElement.hidden = false;
-          qrButton.innerHTML = "Hide QRCode";
-        }
-      }
-
-      function toggleQRCode2() {
-        var isShown = !qr2Element.hidden;
-        if (isShown) {
-          qr2Element.hidden = true;
-          qr2Button.innerHTML = "Show Opera GX QRCode";
-        } else {
-          qr2Element.hidden = false;
-          qr2Button.innerHTML = "Hide Opera GX QRCode";
-        }
-      }
-
-      /*
-      var g_extLostContext = null;
-
-      function toggleWebGLContext() {
-        if (g_extLostContext == null) {
-          var canvas = document.getElementById('canvas');
-          var gl = canvas.getContext('webgl2');
-          g_extLostContext = gl.getExtension('WEBGL_lose_context');
-        } // end if
-        var button = document.getElementById("webglbutton");
-        var text = button.textContent || button.innerText;
-        if (text.trim() == "Lose WebGL Context") {
-          g_extLostContext.loseContext();
-          button.textContent = "Restore WebGL Context";
-        } // end if
-        else {
-          g_extLostContext.restoreContext();
-          button.textContent = "Lose WebGL Context";
-          g_extLostContext = null;
-        } // end else
-      }
-      */
       function toggleElement(id) {
         var elem = document.getElementById(id);
         if (elem) {
@@ -896,11 +857,11 @@
 
       function manifestFilesMD5()
       {
-        return [ "585214623b669175a702fed30de7d21d",
-"8669aa66d44cfb4f13a098cd6b0296e1",
-"d29ac123833b56dcfbe188f10e5ecb85",
+        return [ "ed8ced6e56d5e6aff6f5a1820d7ba882",
+"b7692ef32b6fab43c77fb58735db6034",
+"75dbb242c2e3c7a074418a2ed001b1fa",
 "e8f1e8db8cf996f8715a6f2164c2e44e",
-"c1d3aaf20026b5144a12055ed3fc05c7" ];
+"de3f499b3b3745c3317a78fdd07b2df9" ];
       }
 
       function onFirstFrameRendered()
@@ -915,6 +876,7 @@
           startingHeight = height;
           startingWidth = width;
           startingAspect = startingWidth / startingHeight;
+          ensureAspectRatio();
       }
 
     function triggerAd(adId, _callback_beforeAd, _callback_afterAd, _callback_adDismissed, _callback_adViewed, _callback_adbreakDone) {
@@ -1592,5 +1554,12 @@
       }
     </script>
     <script async type="text/javascript" src="runner.js"></script>
+
+    <!-- Custom BodyEnd code is injected here -->
+    
+
   </body>
+  
+  <!-- Custom PostBody code is injected here -->
+  
 </html>

@@ -9,6 +9,17 @@
 
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    
+    <script>
+        jQuery(document).ready(function() {
+            $("#hamburger-button").click(function() {
+                $("body").toggleClass("hamburger-active");
+            });
+            $("header, aside, main").click(function() {
+                $("body").removeClass("hamburger-active");
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -19,10 +30,10 @@
         </header>
 
         <nav>
-            <div id="hamburger-button">&nbsp;</div> 
+            <!-- <div id="hamburger-button">&nbsp;</div> -->
             <ul>
-                <li><a href="https://tcd-links.netlify.app/cis" target="_blank">Program Info</a></li>
                 <li><a href="https://tcdcis.netlify.app/example/" target="_blank">Teacher's Examples</a></li>
+                <li><a href="https://tcd-links.netlify.app/cis" target="_blank">Program Info</a></li>
                 <li><a href="https://knighthawk0811-shop.fourthwall.com/" target="_blank">Class Store</a></li>
                 <li><a href="https://www.instagram.com/tcd_cis/" target="_blank">Instagram</a></li>
             </ul>

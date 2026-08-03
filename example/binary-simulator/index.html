@@ -212,6 +212,7 @@
     gap:10px;
     justify-content:center;
     margin-top:24px;
+    flex-wrap:wrap;
   }
   button.act{
     background:transparent;
@@ -227,6 +228,11 @@
     transition:all .15s ease;
   }
   button.act:hover{ color:var(--text); border-color:var(--dim); }
+  button.act:disabled{ opacity:0.35; cursor:not-allowed; }
+  button.act:disabled:hover{ color:var(--dim); border-color:var(--trace); }
+
+  button.act.count{ color:var(--on); border-color:var(--trace); }
+  button.act.count:hover{ border-color:var(--on); }
 
   footer{
     margin-top:34px;
@@ -242,9 +248,9 @@
 </head>
 <body>
 
-  <div class="eyebrow">Digital Logic Lab</div>
+  <div class="eyebrow"></div>
   <h1>Binary <span>Simulator</span></h1>
-  <div class="sub">Click a bit to flip it. Watch its place value, its power of two, and the running decimal total update live.</div>
+  <div class="sub">Click a bit to flip it (0/1). Watch the simulator update live.</div>
 
   <div class="board">
     <div class="grid" id="grid"></div>
@@ -269,6 +275,11 @@
     </div>
 
     <div class="actions">
+      <button class="act count" id="downBtn">&minus; Count Down</button>
+      <button class="act count" id="upBtn">Count Up &plus;</button>
+    </div>
+
+    <div class="actions">
       <button class="act" id="clearBtn">Clear</button>
       <button class="act" id="fillBtn">Set All</button>
       <button class="act" id="randBtn">Randomize</button>
@@ -279,6 +290,7 @@
 
 <script>
   const BIT_COUNT = 8;
+  const MAX_VALUE = Math.pow(2, BIT_COUNT) - 1;
   const grid = document.getElementById('grid');
   const bits = new Array(BIT_COUNT).fill(0);
   const bitEls = [];
@@ -331,6 +343,21 @@
     bitEls.push({ col, bitBtn, exponent, placeValue });
   }
 
+  function getDecimalValue() {
+    let decimal = 0;
+    for (let i = 0; i < BIT_COUNT; i++) {
+      if (bits[i]) decimal += bitEls[i].placeValue;
+    }
+    return decimal;
+  }
+
+  function setDecimalValue(value) {
+    for (let i = 0; i < BIT_COUNT; i++) {
+      bits[i] = (value & bitEls[i].placeValue) ? 1 : 0;
+    }
+    render();
+  }
+
   function render() {
     let decimal = 0;
     const exprParts = [];
@@ -343,14 +370,6 @@
       col.classList.toggle('active', on);
       if (on) decimal += placeValue;
 
-      const span = document.createElement('span');
-      /*
-      //exponenet value
-      exprParts.push(
-        `<span class="term ${on ? '' : 'zero'}">${bits[i]}&times;2<sup>${exponent}</sup></span>`
-      );//*/
-      
-      //place value
       exprParts.push(
         `<span class="term ${on ? '' : 'zero'}">${bits[i]}&times;${placeValue}</span>`
       );
@@ -361,6 +380,9 @@
     document.getElementById('hexOut').textContent = '0x' + decimal.toString(16).toUpperCase().padStart(2, '0');
     document.getElementById('decOut').textContent = decimal;
     document.getElementById('exprOut').innerHTML = exprParts.join('<span class="op">+</span>') + `<span class="op">=</span><span class="term">${decimal}</span>`;
+
+    document.getElementById('upBtn').disabled = decimal >= MAX_VALUE;
+    document.getElementById('downBtn').disabled = decimal <= 0;
   }
 
   document.getElementById('clearBtn').addEventListener('click', () => {
@@ -374,6 +396,14 @@
   document.getElementById('randBtn').addEventListener('click', () => {
     for (let i = 0; i < BIT_COUNT; i++) bits[i] = Math.random() < 0.5 ? 0 : 1;
     render();
+  });
+  document.getElementById('upBtn').addEventListener('click', () => {
+    const current = getDecimalValue();
+    if (current < MAX_VALUE) setDecimalValue(current + 1);
+  });
+  document.getElementById('downBtn').addEventListener('click', () => {
+    const current = getDecimalValue();
+    if (current > 0) setDecimalValue(current - 1);
   });
 
   render();

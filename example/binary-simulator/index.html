@@ -323,9 +323,9 @@
 
     col.appendChild(label);
     col.appendChild(traceLine);
-    col.appendChild(place);
     col.appendChild(bitBtn);
     col.appendChild(math);
+    col.appendChild(place);
     grid.appendChild(col);
 
     bitEls.push({ col, bitBtn, exponent, placeValue });
@@ -344,8 +344,15 @@
       if (on) decimal += placeValue;
 
       const span = document.createElement('span');
+      /*
+      //exponenet value
       exprParts.push(
         `<span class="term ${on ? '' : 'zero'}">${bits[i]}&times;2<sup>${exponent}</sup></span>`
+      );//*/
+      
+      //place value
+      exprParts.push(
+        `<span class="term ${on ? '' : 'zero'}">${bits[i]}&times;${placeValue}</span>`
       );
     });
 
